@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://seng123:seng123@selfcycle-vrpt6.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken"
+}
