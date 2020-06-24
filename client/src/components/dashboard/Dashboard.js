@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
+import RecycleGuide from './RecycleGuide';
 
 const Dashboard = ({ 
     getCurrentProfile, 
@@ -52,52 +53,7 @@ const Dashboard = ({
                 Create Profile
             </Link>
         </Fragment>)}
-
-        {/*<div class="post bg-white p-1 my-1">
-        <table  className="table">
-            <tbody> 
-                <tr>
-                    <tr> 
-                        <td> <img class="round-img" src={ require('../../img/box.png')} /> </td>
-                        <td> <img class="round-img" src={ require('../../img/glass-bottle.png')}/> </td>
-                        <td> <img class="round-img" src={ require('../../img/paper-book.png')}/> </td>
-                        <td> <img class="round-img" src={ require('../../img/tin-can.png')}/> </td>
-                    </tr>
-                    <tr>
-                        <td> <b> Paper, Cardboxes: 1kg = 10 points </b> </td> 
-                        <td> <b> Glass: 1kg = 7 points </b> </td> 
-                        <td> <b> Plastic: 1kg = 3 points </b> </td> 
-                        <td> <b> Metal, Aluminium: 1 Kg = 7 points </b> </td> 
-                    </tr>
-                </tr>
-            </tbody>
-        </table>
-        </div>*/}
-
-        <div class="post bg-white p-1 my-1">
-            <div> 
-                <img class="round-img" src={ require('../../img/box-500.png')} /> 
-                <img class="round-img" src={ require('../../img/plastics_laundry.png')} /> 
-                <img class="round-img" src={ require('../../img/glass-bottle.png')}/>
-                <img class="round-img" src={ require('../../img/tin-can.png')}/>
-            </div>
-            <div>
-            <img class="round-img" src={ require('../../img/paper-book.png')}/> 
-            <b> Paper, cardboxes, books: 1kg = 10 points,  </b> <br/>
-
-            <img class="round-img" src={ require('../../img/plastic_bag.png')}/> 
-            <b> Plastic bag, plastic bottles: 1kg = 3 points,  </b> <br/>
-
-            <img class="round-img" src={ require('../../img/mason-jar.png')}/>    
-            <b> Glass jar, glass bottle: 1kg = 7 points, Glass jar,  </b> <br/>
-            
-            <img class="round-img" src={ require('../../img/drink-can.png')}/>    
-            <b>  Metal can, aluminium cans: 1 Kg = 7 points , </b>
-            </div>
-
-
-        </div>
-        
+        <RecycleGuide/>
     </Fragment>);
 };
 
