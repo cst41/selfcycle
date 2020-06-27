@@ -7,6 +7,7 @@ import DashboardActions from './DashboardActions';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import RecycleGuide from './RecycleGuide';
 import PieChart from './PieChart';
+import money from './PieChartComponent/money.svg';
 
 const Dashboard = ({ 
     getCurrentProfile, 
@@ -30,6 +31,7 @@ const Dashboard = ({
                     <tr>
                         <tr> <b> Email Address : </b> {  user && user.email }</tr>
                         <tr> <b> Account Created On: </b> { user && user.date}</tr>
+                        <tr><img src={money} style={{width: '20px', verticalAlign: '-6px'}}/> <span> </span> <span id='points'>3030</span></tr>
                     </tr>
                 </tbody>
         </table> <br/>
