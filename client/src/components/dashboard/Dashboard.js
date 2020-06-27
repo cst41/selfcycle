@@ -6,6 +6,7 @@ import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import RecycleGuide from './RecycleGuide';
+import PieChart from './PieChart';
 
 const Dashboard = ({ 
     getCurrentProfile, 
@@ -55,6 +56,9 @@ const Dashboard = ({
             </Link>
         </Fragment>)}
         <RecycleGuide/>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+            <PieChart/>
+        </div>
     </Fragment>);
 };
 
