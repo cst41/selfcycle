@@ -28,6 +28,7 @@ const Dashboard = ({
                 <tbody>
                     <tr>
                         <tr> <b> Email Address : </b> {  user && user.email }</tr>
+                        <tr> <b> Account Created On: </b> { user && user.date}</tr>
                     </tr>
                 </tbody>
         </table> <br/>

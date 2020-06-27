@@ -14,7 +14,7 @@ const Navbar = ({ auth: {isAuthenticated, loading }, logout }) => {
             </li>
 
             <li><Link to="/posts">
-            <i className="fas fa-exclamation-triangle"></i>{' '}Make A Complaint
+            <i className="fas fa-exclamation-triangle"></i>{' '}Report A Problem
                <span className="hide-sm"></span>
                 </Link>
             </li>

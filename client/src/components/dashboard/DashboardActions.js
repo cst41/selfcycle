@@ -8,7 +8,7 @@ export const DashboardActions = () => {
           ><i className='fas fa-user-circle text-primary'></i> View My Profile
          </Link>
 
-        <Link to='/convert-points' className='btn btn-light'
+        <Link to='/tng-login' className='btn btn-light'
           ><i class='fas fa-exchange-alt text-primary'></i> Convert Points
          </Link>
         

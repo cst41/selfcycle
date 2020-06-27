@@ -6,7 +6,7 @@ const RecycleGuide = props => {
     return (
         <div>
             <p><b> Recycling Waste Points Conversion Rate </b> | <Link to='/#'> Guide on recycling waste</Link></p>
-            <div class="ritem bg-white p-1 my-1">
+            <div class="aritem bg-white p-1 my-1">
                 <div> 
                     
                     <img class="round-img" src={ require('../../img/box-brown.png')} /> 

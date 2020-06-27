@@ -9,7 +9,8 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
-import ConvertPoints from './components/dashboard/ConvertPoints';
+import TngLogin from './components/convertpoints/Tnglogin';
+import ConvertPoints from './components/convertpoints/Convert';
 import MyProfile from './components/profile-forms/MyProfile';
 import ViewProfile from './components/profile-forms/ViewProfile';
 import CreateProfile from './components/profile-forms/CreateProfile';
@@ -29,6 +30,7 @@ import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
+import Convert from './components/convertpoints/Convert';
 
 if(localStorage.token){
   setAuthToken(localStorage.token);
@@ -57,7 +59,8 @@ const App = () => {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/my-profile" component={MyProfile} />
             <PrivateRoute exact path="/view-profile" component={ViewProfile} />
-            <PrivateRoute exact path="/convert-points" component={ConvertPoints} />
+            <PrivateRoute exact path="/tng-login" component={TngLogin} />
+            <PrivateRoute exact path="/convert" component={ConvertPoints} />
             <PrivateRoute exact path="/create-profile" component={CreateProfile} />
             <PrivateRoute exact path="/edit-profile" component={EditProfile} />
             {/*<PrivateRoute exact path="/add-experience" component={AddExperience} />*/}
