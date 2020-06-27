@@ -8,12 +8,14 @@ import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import RecycleGuide from './RecycleGuide';
 import PieChart from './PieChart';
 import money from './PieChartComponent/money.svg';
+import { getPoints } from '../../actions/points';
 
 const Dashboard = ({ 
     getCurrentProfile, 
     deleteAccount,
     auth: { user }, 
-    profile: { profile, loading} 
+    profile: { profile, loading},
+    total
     }) => {
     useEffect(() => {
         getCurrentProfile();
@@ -31,7 +33,7 @@ const Dashboard = ({
                     <tr>
                         <tr> <b> Email Address : </b> {  user && user.email }</tr>
                         <tr> <b> Account Created On: </b> { user && user.date}</tr>
-                        <tr><img src={money} style={{width: '20px', verticalAlign: '-6px'}}/> <span> </span> <span id='points'>3030</span></tr>
+                        <tr><img src={money} style={{width: '20px', verticalAlign: '-6px'}}/> <span> </span> <span>{total}</span></tr>
                     </tr>
                 </tbody>
         </table> <br/>
@@ -68,12 +70,14 @@ Dashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
     deleteAccount: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    profile: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired,
+    total: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    profile: state.profile
+    profile: state.profile,
+    total: state.points.total
 });
 
 export default connect(
