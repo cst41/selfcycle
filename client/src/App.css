@@ -262,7 +262,7 @@ img {
 .form input[type='phone-num'],
 .form input[type='house-add'],
 .form input[type='points'],
-.form input[type='emoney'],
+.form input[type='eWallet'],
 .form select,
 .form textarea {
   display: block;
