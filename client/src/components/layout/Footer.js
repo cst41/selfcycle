@@ -17,10 +17,11 @@ const Footer = prop => {
                     <div className="footer_cells">
                         <h1> About Us</h1>
                         <span>
-                            Self Cycle Sdn Bhd <br/>
-                            Menara Kingston<br/> 
-                            Unit 10, Jalan Ampang<br/>
-                            5700, Kuala Lumpur<br/>
+                            Team Omega, is a group <br/>
+                            consists of four Computer<br/>
+                            Science Students from <br/>
+                            UOW in INTI International<br/>
+                            College Subang Jaya<br/>
                          </span>
                     </div>
 

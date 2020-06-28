@@ -5,6 +5,7 @@ import Landing from './components/layout/Landing';
 import Footer from "./components/layout/Footer";
 import ContactUs from "./components/layout/ContactUs";
 import FAQ from "./components/layout/FAQ";
+import WaitVerify from "./components/layout/Notify";
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alert from './components/layout/Alert';
@@ -59,6 +60,7 @@ const App = () => {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/my-profile" component={MyProfile} />
             <PrivateRoute exact path="/view-profile" component={ViewProfile} />
+            <Route exact path="/wait-verify" component={WaitVerify}/>
             <PrivateRoute exact path="/tng-login" component={TngLogin} />
             <PrivateRoute exact path="/convert" component={ConvertPoints} />
             <PrivateRoute exact path="/create-profile" component={CreateProfile} />

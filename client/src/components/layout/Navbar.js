@@ -23,7 +23,7 @@ const Navbar = ({ auth: {isAuthenticated, loading }, logout }) => {
             <i className="fas fa-eye"></i>{' '}View Complaints
                <span className="hide-sm"></span>
                 </Link>
-            </li>
+        </li>
             
             <li><Link to="/dashboard">
                 <i className="fas fa-user"></i>{' '} Me 

@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
@@ -32,7 +33,7 @@ const Dashboard = ({
                 <tbody>
                     <tr>
                         <tr> <b> Email Address : </b> {  user && user.email }</tr>
-                        <tr> <b> Account Created On: </b> { user && user.date}</tr>
+                        <tr> <b> Account Created On: </b> <Moment format='DD/MM/YYYY'>{ user && user.date}</Moment></tr>
                         <tr><img src={money} style={{width: '20px', verticalAlign: '-6px'}}/> <span> </span> <span>{total}</span></tr>
                     </tr>
                 </tbody>
