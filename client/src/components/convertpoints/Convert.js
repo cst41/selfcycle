@@ -50,7 +50,7 @@ const Convert = ({ convertpoints, calculatepoints  }) => {
                 <div className="form-small">
                 <input
                     type="eWallet"
-                    //placeholder="eWallet"
+                    placeholder="eWallet"
                     id="eWallet"
                     value={eWallet}
                     onChange={e => onChange(e)}
