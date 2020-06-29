@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import { getPosts } from '../../actions/post';
+import {Redirect} from 'react-router-dom';
 
-const ViewPosts = ({ getPosts, post: { posts, loading}}) => {
+const ViewPosts = ({ getPosts, post: { posts, loading}, userLevel}) => {
     useEffect(() => {
         getPosts();
     }, [getPosts]);
 
-    return loading ?( <Spinner/> ): ( <Fragment>
+    return (userLevel !== 3 ? <Redirect to='/dashboard' /> : loading ?( <Spinner/> ): ( <Fragment>
         <h2 className="large text-primary"> View Complaints </h2>
         <br/>
             <div className="posts">
@@ -18,7 +19,7 @@ const ViewPosts = ({ getPosts, post: { posts, loading}}) => {
                     <PostItem key={post._id} post={post}/>
                 ))}
             </div>
-    </Fragment>)
+    </Fragment>))
 };
 
 ViewPosts.propTypes = {
@@ -27,7 +28,8 @@ ViewPosts.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    post: state.post
+    post: state.post,
+    userLevel: state.auth.user.userLevel
 });
 
 export default connect(mapStateToProps, {getPosts})(ViewPosts);
