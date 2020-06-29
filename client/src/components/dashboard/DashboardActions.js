@@ -9,7 +9,7 @@ export const DashboardActions = () => {
          </Link>
 
         <Link to='/tng-login' className='btn btn-light'
-          ><i class='fas fa-exchange-alt text-primary'></i> Convert Points
+          ><i className='fas fa-exchange-alt text-primary'></i> Convert Points
          </Link>
         
         {/*
