@@ -7,7 +7,8 @@ import { getProfiles} from '../../actions/profile';
 
 const Profiles = ({ 
     getProfiles, 
-    profile: { profiles, loading }
+    profile: { profiles, loading },
+    userLevel
 }) => {
     useEffect(() => {
         getProfiles();
@@ -35,11 +36,13 @@ const Profiles = ({
 
 Profiles.propTypes = {
     getProfiles: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired,
+    userLevel: PropTypes.number.isRequired
 }
 
 const mapStateToProps = state => ({
-    profile: state.profile
+    profile: state.profile,
+    userLevel: state.auth.user.userLvel
 })
 
 export default connect(mapStateToProps, {getProfiles})(Profiles);

@@ -15,7 +15,7 @@ router.get('/', auth, async(req, res) => {
     try{
         const user = await User.findById(req.user.id).select('-password');
         res.json(user);
-
+        
     }   catch(err){
         console.error(err.message);
         res.status(500).send('Server Error');
@@ -70,7 +70,11 @@ router.post(
             {expiresIn: 360000},
             (err, token) => {
                 if(err)throw err;
-                res.json({token});
+                    if(typeof user.userLevel !== "number") {
+                        res.json({token});
+                    } else {
+                        res.json({token, userLevel: user.userLevel});
+                    }
                 }
             );
 
