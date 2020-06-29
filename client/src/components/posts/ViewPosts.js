@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useEffect, useState } from 'react';
+import React, { Component, Fragment, useEffect, useState, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
@@ -12,29 +12,59 @@ const ViewPosts = ({
     getPosts, 
     post: { posts, loading}, userLevel}) => {
 
-    const something = () => {
-        console.log(1);
-    };
-
     let filter = 0;
-
-    const [mark, setMark] = useState(
-        1
-    );
 
     useEffect(() => {
         getPosts();
     }, [getPosts]);
+    
+    const something = () => {
+        
 
-    useEffect(() => {
-        something();
-    }, [mark]);
+        // const something = () => {
+        //     let testarr = posts;
+        //     console.log(1);
+        //     testarr = posts.map(post => {
+        //         if( post.issues === "Hardware Issue" && hardwareIssue === true)
+        //         {
+        //             return post;
+        //         }
+    
+        //         else if(post.issues === "Software Issue" && softwareIssue === true)
+        //         {
+        //             return (
+        //                 <PostItem key={post._id} post={post}/>
+        //             )
+        //         }
+    
+        //         else if(post.issues === "Customer Service Issue" && csIssue === true)
+        //         {
+        //             return (
+        //                 <PostItem key={post._id} post={post}/>
+        //             )
+        //         }
+    
+        //         else if(post.issues === "Payment Issue" && payIssue === true)
+        //         {
+        //             return (
+        //                 <PostItem key={post._id} post={post}/>
+        //             )
+        //         }
+    
+        //         else if(post.issues === "Other Issue" && othersIssue === true)
+        //         {
+        //             return (
+        //                 <PostItem key={post._id} post={post}/>
+        //             )
+        //         }
+        // });
+    };
 
     let hardwareIssue = true, softwareIssue, csIssue, payIssue, othersIssue = false;
 
     const findComplaints = (e) => {
         //console.log(e.target.checked);
-        setMark(filter++);
+        let testarr = posts;
     }
 
     return (userLevel !== 3 ? <Redirect to='/dashboard' /> : loading ?( <Spinner/> ): ( <Fragment>
@@ -59,49 +89,8 @@ const ViewPosts = ({
         </div>
 
          <div className="posts">
-                {posts.map(post => {
-                    if( post.issues === "Hardware Issue" && hardwareIssue === true)
-                    {
-                        return (
-                            <PostItem key={post._id} post={post}/>
-                        )
-                    }
-
-                    else if(post.issues === "Software Issue" && softwareIssue === true)
-                    {
-                        return (
-                            <PostItem key={post._id} post={post}/>
-                        )
-                    }
-
-                    else if(post.issues === "Customer Service Issue" && csIssue === true)
-                    {
-                        return (
-                            <PostItem key={post._id} post={post}/>
-                        )
-                    }
-
-                    else if(post.issues === "Payment Issue" && payIssue === true)
-                    {
-                        return (
-                            <PostItem key={post._id} post={post}/>
-                        )
-                    }
-
-                    else if(post.issues === "Other Issue" && othersIssue === true)
-                    {
-                        return (
-                            <PostItem key={post._id} post={post}/>
-                        )
-                    }
-
-                    {/*else{
-                        return (
-                        <PostItem key={post._id} post={post}/>
-                    
-                        )}*/}}
-                )}
-            </div>
+            <PostItem 
+        </div>
     </Fragment>))
 };
 
