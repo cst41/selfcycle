@@ -22,12 +22,16 @@ export const getPoints = () => async dispatch => {
         let paperWeight, metalWeight;
         if(res.data[0].weight > 1000) {
             paperWeight = (res.data[0].weight/1000.0) + "Kg";
+        } else if(res.data[0].weight < 0) {
+            paperWeight = "0g";
         } else {
             paperWeight = res.data[0].weight + "g";
         }
 
         if(res.data[1].weight > 1000) {
             metalWeight = (res.data[1].weight/1000.0) + "Kg";
+        } else if(res.data[1].weight <0) {
+            metalWeight = "0g";
         } else {
             metalWeight = res.data[1].weight + "g";
         }
