@@ -5,6 +5,7 @@ import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import { getPosts } from '../../actions/post';
 import {Redirect} from 'react-router-dom';
+import { post } from 'request';
 
 
 const ViewPosts = ({ 
@@ -14,8 +15,14 @@ const ViewPosts = ({
 
     let filter = 0;
 
-    useEffect(() => {
-        getPosts();
+    const [val, setValue] = useState();
+
+    const refresh = () => {
+        setValue({});
+    }
+
+    useEffect( () => {
+       getPosts();
     }, [getPosts]);
     
     const something = () => {
@@ -60,11 +67,21 @@ const ViewPosts = ({
         // });
     };
 
-    let hardwareIssue = true, softwareIssue, csIssue, payIssue, othersIssue = false;
+    let hardwareIssue, softwareIssue, csIssue, payIssue, othersIssue = false;
 
     const findComplaints = (e) => {
-        //console.log(e.target.checked);
-        let testarr = posts;
+        if(e.target.id === "1") {
+            hardwareIssue = !hardwareIssue;
+            console.log("test");
+        } else if(e.target.id === "2" ) {
+            softwareIssue = !softwareIssue;
+        } else if(e.target.id === "3") {
+            csIssue = !csIssue;
+        } else if(e.target.id === "4") {
+            payIssue = !payIssue;
+        } else if(e.target.id === "5") {
+            othersIssue = !othersIssue;
+        }
     }
 
     return (userLevel !== 3 ? <Redirect to='/dashboard' /> : loading ?( <Spinner/> ): ( <Fragment>
@@ -89,8 +106,12 @@ const ViewPosts = ({
         </div>
 
          <div className="posts">
-            <PostItem 
+            {posts.map(post => (
+                post.issues === "Hardware Issue" && hardwareIssue ?
+                <PostItem key={post._id} post={post}/> : ""
+            ))}
         </div>
+        <button onClick={refresh}>Refresh</button>
     </Fragment>))
 };
 
