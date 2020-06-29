@@ -32,7 +32,16 @@ const PieChart = ({paper, metal, total, getPoints}) => {
         getPoints();
         //eslint-disable-next-line
     },[]);
+    const pieStyle1 = {
+        wordWrap: 'normal',
+        display: 'inline-block'
+    };
 
+    const pieStyle2 = {
+        width: '40%',
+        wordWrap: 'normal',
+        display: 'inline-block'
+    };
     return (
         <div style={{display:'inline-flex', flexDirection: 'column'}}>
         <div style={{display: 'flex',flexDirection: 'row', marginBottom: '0.75vw'}}>
@@ -48,7 +57,7 @@ const PieChart = ({paper, metal, total, getPoints}) => {
                         <div>Paper</div>
                         <div>
                             <Danger1/>
-                            <span style={{width: '40%', wordWrap: 'normal', display: 'inline-block'}}>
+                            <span style={paper == undefined ? pieStyle1 : (paper.full === "Empty" ? pieStyle1 : pieStyle2)}>
                             {paper == undefined ? "" : (
                                 paper.full === "25% Full" ? "Reaching 25% Fullness" : 
                                 (paper.full === "50% Full" ? "Reaching 50% Fullness" : 

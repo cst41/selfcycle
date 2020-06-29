@@ -9,7 +9,6 @@ import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import RecycleGuide from './RecycleGuide';
 import PieChart from './PieChart';
 import money from './PieChartComponent/money.svg';
-import { getPoints } from '../../actions/points';
 
 const Dashboard = ({ 
     getCurrentProfile, 
@@ -62,7 +61,7 @@ const Dashboard = ({
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <RecycleGuide/>
             <div style={{alignSelf: 'flex-end'}}>
-                <img src={money} style={{width: '20px', verticalAlign: '-6px'}}/> <span> </span> <span>{total}</span>
+                <img src={money} style={{width: '30px', verticalAlign: '-10px'}}/> <span> </span> <span>{total}</span>
             </div>
             <PieChart/>
         </div>
