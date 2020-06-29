@@ -32,8 +32,8 @@ const Dashboard = ({
         <table className="table">
                 <tbody>
                     <tr>
-                        <tr> <b> Email Address : </b> {  user && user.email }</tr>
-                        <tr> <b> Account Created On: </b> <Moment format='DD/MM/YYYY'>{ user && user.date}</Moment></tr>
+                        <tr><b> Email Address : </b> {  user && user.email }</tr>
+                        <tr><b> Account Created On: </b> <Moment format='DD/MM/YYYY'>{ user && user.date}</Moment></tr>
                         <tr><img src={money} style={{width: '20px', verticalAlign: '-6px'}}/> <span> </span> <span>{total}</span></tr>
                     </tr>
                 </tbody>
