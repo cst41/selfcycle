@@ -36,13 +36,27 @@ const PieChart = ({paper, metal, total, getPoints}) => {
     return (
         <div style={{display:'inline-flex', flexDirection: 'column'}}>
         <div style={{display: 'flex',flexDirection: 'row', marginBottom: '0.75vw'}}>
-            <div style={{position:'relative',width:'200px', height:'200px', margin: '0 0.75vw 0 0.75vw'}}>
-                <Paper0/>
+            <div style={{position:'relative',width:'260px', height:'260px', margin: '0 0.75vw 0 0.75vw'}}>
+                {paper == undefined ? "" : (
+                    paper.full === "25% Full" ? <Paper25/> : 
+                    (paper.full === "50% Full" ? <Paper50/> : 
+                    (paper.full === "75% Full" ? <Paper75/> : 
+                    (paper.full === "100% Full" ? <Paper100/> : <Paper0/>)))
+                    )}
                 <div style={{textAlign: 'right',marginTop: '38%'}}>
-                    <Danger1/>
                     <div style={{display:'inline-block',marginRight: '3%'}}>
                         <div>Paper</div>
-                        <div>{paper != undefined ? paper.full : ""}</div>
+                        <div>
+                            <Danger1/>
+                            <span style={{width: '40%', wordWrap: 'normal', display: 'inline-block'}}>
+                            {paper == undefined ? "" : (
+                                paper.full === "25% Full" ? "Reaching 25% Fullness" : 
+                                (paper.full === "50% Full" ? "Reaching 50% Fullness" : 
+                                (paper.full === "75% Full" ? "Reaching 75% Fullness" : 
+                                (paper.full === "100% Full" ? "Reaching 100% Fullness" : "Empty")))
+                            )}
+                            </span>
+                        </div>
                         <div>{paper != undefined ? paper.weight : ""}</div>
                     </div>
                     <div style={{textAlign: 'left',position:'absolute',bottom:'1%',left:'15%'}}>
@@ -51,15 +65,31 @@ const PieChart = ({paper, metal, total, getPoints}) => {
                     </div>
                 </div>
             </div>
-            <div style={{position:'relative',width:'200px',height:'200px',margin: '0 0.75vw 0 0'}}>
-                <Metal0/>
+            <div style={{position:'relative',width:'260px',height:'260px',margin: '0 0.75vw 0 0'}}>
+                {
+                    metal == undefined ? "" :
+                    (metal.full === "25% Full" ? <Metal25/> : 
+                    (metal.full === "50% Full" ? <Metal50/> :
+                    (metal.full === "75% Full" ? <Metal75/> :
+                    (metal.full === "100% Full" ? <Metal100/> : <Metal0/>))))
+                }
                 <div style={{textAlign: 'left', marginTop: '38%'}}>
                     <div style={{display:'inline-block',marginLeft: '3%'}}>
                         <div>Metal</div>
-                        <div>{metal != undefined ? metal.full : ""}</div>
+                        <div>
+                            <span style={{width: '40%', wordWrap: 'normal', display: 'inline-block'}}>
+                            {
+                                metal == undefined ? "" :
+                                (metal.full === "25% Full" ? "Reaching 25% Fullness" : 
+                                (metal.full === "50% Full" ? "Reaching 50% Fullness" :
+                                (metal.full === "75% Full" ? "Reaching 75% Fullness" :
+                                (metal.full === "100% Full" ? "Reaching 100% Fullness" : "Empty"))))
+                            }
+                            </span>
+                            <Danger2/>
+                        </div>
                         <div>{metal != undefined ? metal.weight : ""}</div>
                     </div>
-                    <Danger2/>
                     <div style={{textAlign: 'right', position:'absolute',bottom:'1%',right:'15%'}}>
                         <Money/>
                         <span>{metal != undefined ? metal.points : ""}</span>
@@ -68,7 +98,7 @@ const PieChart = ({paper, metal, total, getPoints}) => {
             </div>
         </div>
         <div style={{display: 'flex',flexDirection: 'row'}}>
-            <div style={{position:'relative',width:'200px',height:'200px',margin: '0 0.75vw 0 0.75vw'}}>
+            <div style={{position:'relative',width:'260px',height:'260px',margin: '0 0.75vw 0 0.75vw'}}>
                 <Others0/>
                 <div style={{textAlign: 'right',marginTop: '28%'}}>
                     <Danger1/>
@@ -79,7 +109,7 @@ const PieChart = ({paper, metal, total, getPoints}) => {
                     </div>
                 </div>
             </div>
-            <div style={{position:'relative',width:'200px',height:'200px',margin: '0 0.75vw 0 0'}}>
+            <div style={{position:'relative',width:'260px',height:'260px',margin: '0 0.75vw 0 0'}}>
                 <Plastic0/>
                 <div style={{textAlign: 'right',position:'absolute',top:'1%',right:'15%'}}>
                     <Money/>

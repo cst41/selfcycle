@@ -48,38 +48,38 @@ const Money = () => {
 
 const Paper0 = () => (
     <Fragment>
-        <img src={paper0} style={{width: '200px', position: 'absolute', zIndex:'-1'}} alt="paper"/>
+        <img src={paper0} style={{width: '260px', position: 'absolute', zIndex:'-1'}} alt="paper"/>
     </Fragment>
 );
 
 const Paper25 = () => {
     return(<Fragment>
-        <img src={paper25} style={{width: '200px', position: 'absolute', zIndex:'-1'}} alt="paper"/>
+        <img src={paper25} style={{width: '260px', position: 'absolute', zIndex:'-1'}} alt="paper"/>
     </Fragment>);
 };
 
 const Paper50 = () => {
     return(<Fragment>
-        <img src={paper50} style={{width: '200px', position: 'absolute', zIndex:'-1'}} alt="paper"/>
+        <img src={paper50} style={{width: '260px', position: 'absolute', zIndex:'-1'}} alt="paper"/>
     </Fragment>);
 };
 
 const Paper75 = () => {
     return(<Fragment>
-        <img src={paper75} style={{width: '200px', position: 'absolute', zIndex:'-1'}} alt="paper"/>
+        <img src={paper75} style={{width: '260px', position: 'absolute', zIndex:'-1'}} alt="paper"/>
     </Fragment>);
 };
 
 const Paper100 = () => {
     return(<Fragment>
-        <img src={paper100} style={{width: '200px', position: 'absolute', zIndex:'-1'}} alt="paper"/>
+        <img src={paper100} style={{width: '260px', position: 'absolute', zIndex:'-1'}} alt="paper"/>
     </Fragment>);
 };
 
 const Metal0 = () => {
     return(
         <Fragment>
-            <img src={metal0} style={{width: '200px', position: 'absolute', zIndex:'-1'}} alt="metal"/>
+            <img src={metal0} style={{width: '260px', position: 'absolute', zIndex:'-1'}} alt="metal"/>
         </Fragment>
     );
 };
@@ -87,7 +87,7 @@ const Metal0 = () => {
 const Metal25 = () => {
     return(
         <Fragment>
-            <img src={metal25} style={{width: '200px', position: 'absolute', zIndex:'-1'}} alt="metal"/>
+            <img src={metal25} style={{width: '260px', position: 'absolute', zIndex:'-1'}} alt="metal"/>
         </Fragment>
     );
 };
@@ -95,7 +95,7 @@ const Metal25 = () => {
 const Metal50 = () => {
     return(
         <Fragment>
-            <img src={metal50} style={{width: '200px', position: 'absolute', zIndex:'-1'}} alt="metal"/>
+            <img src={metal50} style={{width: '260px', position: 'absolute', zIndex:'-1'}} alt="metal"/>
         </Fragment>
     );
 };
@@ -103,7 +103,7 @@ const Metal50 = () => {
 const Metal75 = () => {
     return(
         <Fragment>
-            <img src={metal75} style={{width: '200px', position: 'absolute', zIndex:'-1'}} alt="metal"/>
+            <img src={metal75} style={{width: '260px', position: 'absolute', zIndex:'-1'}} alt="metal"/>
         </Fragment>
     );
 };
@@ -111,7 +111,7 @@ const Metal75 = () => {
 const Metal100 = () => {
     return(
         <Fragment>
-            <img src={metal100} style={{width: '200px', position: 'absolute', zIndex:'-1'}} alt="metal"/>
+            <img src={metal100} style={{width: '260px', position: 'absolute', zIndex:'-1'}} alt="metal"/>
         </Fragment>
     );
 };
@@ -119,7 +119,7 @@ const Metal100 = () => {
 const Others0 = () => {
     return(
         <Fragment>
-            <img src={others0} style={{width: '200px', position: 'absolute',zIndex:'-1'}} alt="others"/>
+            <img src={others0} style={{width: '260px', position: 'absolute',zIndex:'-1'}} alt="others"/>
         </Fragment>
     );
 };
@@ -127,7 +127,7 @@ const Others0 = () => {
 const Others25 = () => {
     return(
         <Fragment>
-            <img src={others25} style={{width: '200px', position: 'absolute',zIndex:'-1'}} alt="others"/>
+            <img src={others25} style={{width: '260px', position: 'absolute',zIndex:'-1'}} alt="others"/>
         </Fragment>
     );
 };
@@ -135,7 +135,7 @@ const Others25 = () => {
 const Others50 = () => {
     return(
         <Fragment>
-            <img src={others50} style={{width: '200px', position: 'absolute',zIndex:'-1'}} alt="others"/>
+            <img src={others50} style={{width: '260px', position: 'absolute',zIndex:'-1'}} alt="others"/>
         </Fragment>
     );
 };
@@ -143,7 +143,7 @@ const Others50 = () => {
 const Others75 = () => {
     return(
         <Fragment>
-            <img src={others75} style={{width: '200px', position: 'absolute',zIndex:'-1'}} alt="others"/>
+            <img src={others75} style={{width: '260px', position: 'absolute',zIndex:'-1'}} alt="others"/>
         </Fragment>
     );
 };
@@ -151,7 +151,7 @@ const Others75 = () => {
 const Others100 = () => {
     return(
         <Fragment>
-            <img src={others100} style={{width: '200px', position: 'absolute',zIndex:'-1'}} alt="others"/>
+            <img src={others100} style={{width: '260px', position: 'absolute',zIndex:'-1'}} alt="others"/>
         </Fragment>
     );
 };
@@ -159,7 +159,7 @@ const Others100 = () => {
 const Plastic0 = () => {
     return(
         <Fragment>
-            <img src={plastic0} style={{width: '200px', position: 'absolute',zIndex:'-1'}} alt="plastic"/>
+            <img src={plastic0} style={{width: '260px', position: 'absolute',zIndex:'-1'}} alt="plastic"/>
         </Fragment>
     );
 };
@@ -167,7 +167,7 @@ const Plastic0 = () => {
 const Plastic25 = () => {
     return(
         <Fragment>
-            <img src={plastic25} style={{width: '200px', position: 'absolute',zIndex:'-1'}} alt="plastic"/>
+            <img src={plastic25} style={{width: '260px', position: 'absolute',zIndex:'-1'}} alt="plastic"/>
         </Fragment>
     );
 };
@@ -175,7 +175,7 @@ const Plastic25 = () => {
 const Plastic50 = () => {
     return(
         <Fragment>
-            <img src={plastic50} style={{width: '200px', position: 'absolute',zIndex:'-1'}} alt="plastic"/>
+            <img src={plastic50} style={{width: '260px', position: 'absolute',zIndex:'-1'}} alt="plastic"/>
         </Fragment>
     );
 };
@@ -183,7 +183,7 @@ const Plastic50 = () => {
 const Plastic75 = () => {
     return(
         <Fragment>
-            <img src={plastic75} style={{width: '200px', position: 'absolute',zIndex:'-1'}} alt="plastic"/>
+            <img src={plastic75} style={{width: '260px', position: 'absolute',zIndex:'-1'}} alt="plastic"/>
         </Fragment>
     );
 };
@@ -191,7 +191,7 @@ const Plastic75 = () => {
 const Plastic100 = () => {
     return(
         <Fragment>
-            <img src={plastic100} style={{width: '200px', position: 'absolute',zIndex:'-1'}} alt="plastic"/>
+            <img src={plastic100} style={{width: '260px', position: 'absolute',zIndex:'-1'}} alt="plastic"/>
         </Fragment>
     );
 };

@@ -34,7 +34,6 @@ const Dashboard = ({
                     <tr>
                         <tr> <b> Email Address : </b> {  user && user.email }</tr>
                         <tr> <b> Account Created On: </b> <Moment format='DD/MM/YYYY'>{ user && user.date}</Moment></tr>
-                        <tr><img src={money} style={{width: '20px', verticalAlign: '-6px'}}/> <span> </span> <span>{total}</span></tr>
                     </tr>
                 </tbody>
         </table> <br/>
@@ -60,8 +59,11 @@ const Dashboard = ({
                 Create Profile
             </Link>
         </Fragment>)}
-        <RecycleGuide/>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <RecycleGuide/>
+            <div style={{alignSelf: 'flex-end'}}>
+                <img src={money} style={{width: '20px', verticalAlign: '-6px'}}/> <span> </span> <span>{total}</span>
+            </div>
             <PieChart/>
         </div>
     </Fragment>);
