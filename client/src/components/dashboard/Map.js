@@ -1,9 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
+import {connect} from 'react-redux';
+import { getPoints } from '../../actions/points';
 
-const Map = () => {
+const Map = ({points, getPoints}) => {
     const [recycler, setRecycler] = useState(null);
     const [wastebin, setWastebin] = useState(null);
+
+    useEffect(() => {
+        getPoints();
+        //eslint-disable-next-line
+    }, []);
 
     return (
         <GoogleMap 
@@ -43,19 +50,19 @@ const Map = () => {
                         <h3>Recyclable Content:</h3>
                         <table style={{borderCollapse: 'collapse', border: '1px solid black'}}>
                             <tr>
-                                <th style={{border: '1px solid black'}}>Waste Bin</th>
-                                <th style={{border: '1px solid black'}}>Fullness</th>
-                                <th style={{border: '1px solid black'}}>Weight</th>
+                                <th style={tableStyling}>Waste Bin</th>
+                                <th style={tableStyling}>Fullness</th>
+                                <th style={tableStyling}>Weight</th>
                             </tr>
                             <tr>
-                                <td style={{border: '1px solid black'}}>Paper</td>
-                                <td style={{border: '1px solid black'}}>Empty</td>
-                                <td style={{border: '1px solid black'}}>0g</td>
+                                <td style={tableStyling}>Paper</td>
+                                <td style={tableStyling}>{points.paper.full}</td>
+                                <td style={tableStyling}>{points.paper.weight}</td>
                             </tr>
                             <tr>
-                                <td style={{border: '1px solid black'}}>Metal</td>
-                                <td style={{border: '1px solid black'}}>25% Full</td>
-                                <td style={{border: '1px solid black'}}>0.24g</td>
+                                <td style={tableStyling}>Metal</td>
+                                <td style={tableStyling}>{points.metal.full}</td>
+                                <td style={tableStyling}>{points.metal.weight}</td>
                             </tr>
                         </table>
                     </div>
@@ -65,9 +72,20 @@ const Map = () => {
     );
 }
 
-const WrappedMap = withScriptjs(withGoogleMap(Map));
+const tableStyling = {
+    border: '1px solid black',
+    margin: '2px'
+}
 
-export default function App() {
+const mapStateToProps = (state) => {
+    return({
+        points: state.points
+    });
+};
+
+const WrappedMap = withScriptjs(withGoogleMap(connect(mapStateToProps, {getPoints})(Map)));
+
+const App = () => {
     return <div style={{width: '100%', height: '80vh'}}>
         <WrappedMap 
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAZJS-f33AxHFaKOXqFDcP8vb_c7_Womfk`}
@@ -75,4 +93,6 @@ export default function App() {
         containerElement={<div style={{height: '80vh'}} />}
         mapElement={<div style={{height: '80vh'}} />} />
     </div>
-}
+};
+
+export default App;

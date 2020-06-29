@@ -18,7 +18,7 @@ const Dashboard = ({
     auth: { user }, 
     profile: { profile, loading},
     total,
-    userLevel
+    userLevel,
     }) => {
     useEffect(() => {
         getCurrentProfile();
