@@ -13,17 +13,26 @@ const Convert = ({ convertpoints, calculatepoints  }) => {
     const { points, eWallet } = formData;
     const onChange = e => setFormData({ ...formData, [e.target.id]: e.target.value });
 
-    const onKeyPress = (e) =>
-        calculatepoints = (point, output) => {
-            var point = e.getElementById("points").value;
-            var output =  parseFloat(point) / 10;
-            e.getElementById("eWallet").value = output;
-        };
+    const onKeyPress = (e) => {
+        let pat = /^[ ]*\d+[ ]*$/;
+        
+        if(pat.test(e.target.value)) {
+            let output = e.target.value * 0.2;
+            document.getElementById("eWallet").value = output.toFixed(2);
+        } else {
+            document.getElementById("eWallet").value = "";
+        }
+    };
+        // calculatepoints = (point, output) => {
+        //     var point = e.getElementById("points").value;
+        //     var output =  parseFloat(point) / 10;
+        //     e.getElementById("eWallet").value = output;
+        // };
     
     
     const onSubmit = async e =>{ 
         e.preventDefault();
-        convertpoints(points, eWallet);
+        //convertpoints(points, eWallet);
     }
 
     
@@ -34,16 +43,14 @@ const Convert = ({ convertpoints, calculatepoints  }) => {
                 <i className="fas fa-exchange-alt text-primary"></i> Enter the amount of points to be convert into eWallet credit
             </p>
             
-            <form className="form" onSubmit={e => onSubmit(e)} onKeyDown={e => onKeyPress(e)}>
+            <form className="form" onSubmit={e => onSubmit(e)}>
             <img  className='form-img' src={ require('../../img/convert1.png')} /> 
                 <div className="form-small">
                     <input 
                         type="points" 
                         placeholder="Your Points"
                         id="points" 
-                        value={points} 
-                        onChange={e => onChange(e)}
-                        onKeyDown={e => onKeyPress(e)}
+                        onKeyUp={e => onKeyPress(e)}
                         maxLength={6}
                         />
                 </div>
@@ -52,8 +59,7 @@ const Convert = ({ convertpoints, calculatepoints  }) => {
                     type="eWallet"
                     placeholder="eWallet"
                     id="eWallet"
-                    value={eWallet}
-                    onChange={e => onChange(e)}
+                    disabled
                 />
                 </div>
                 <Link to='/convert' className='btn btn-primary' >  Convert </Link>
