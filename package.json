@@ -21,6 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.9",
+    "react-google-maps": "^9.4.5",
     "redux": "^4.0.5",
     "request": "^2.88.2",
     "uuid": "^8.0.0"

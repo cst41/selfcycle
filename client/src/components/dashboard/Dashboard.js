@@ -9,6 +9,7 @@ import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import RecycleGuide from './RecycleGuide';
 import PieChart from './PieChart';
 import money from './PieChartComponent/money.svg';
+import Map from './Map';
 
 
 const Dashboard = ({ 
@@ -16,7 +17,8 @@ const Dashboard = ({
     deleteAccount,
     auth: { user }, 
     profile: { profile, loading},
-    total
+    total,
+    userLevel
     }) => {
     useEffect(() => {
         getCurrentProfile();
@@ -67,7 +69,9 @@ const Dashboard = ({
             <PieChart/>
         </div>
     </Fragment>): (
-
+        <div>
+            <Map />
+        </div>
     ));
 };
 
@@ -76,13 +80,15 @@ Dashboard.propTypes = {
     deleteAccount: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
-    total: PropTypes.number.isRequired
+    total: PropTypes.number.isRequired,
+    userLevel: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
     profile: state.profile,
-    total: state.points.total
+    total: state.points.total,
+    userLevel: state.auth.user.userLevel
 });
 
 export default connect(
