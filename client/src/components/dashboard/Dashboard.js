@@ -10,6 +10,7 @@ import RecycleGuide from './RecycleGuide';
 import PieChart from './PieChart';
 import money from './PieChartComponent/money.svg';
 
+
 const Dashboard = ({ 
     getCurrentProfile, 
     deleteAccount,
@@ -22,7 +23,7 @@ const Dashboard = ({
     }, [getCurrentProfile]);
     
     return loading && profile === null ? (<Spinner/>) : 
-    (<Fragment> 
+    (userLevel === 1 ? (<Fragment> 
         <h1 className="large text-primary"> My Dashboard</h1>
         <p className="lead">
             <i className="fas fa-user"></i> Welcome { user && user.name}
@@ -65,7 +66,9 @@ const Dashboard = ({
             </div>
             <PieChart/>
         </div>
-    </Fragment>);
+    </Fragment>): (
+
+    ));
 };
 
 Dashboard.propTypes = {
