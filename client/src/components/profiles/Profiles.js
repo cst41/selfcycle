@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import ProfileItem from './ProfileItem';
 import { getProfiles} from '../../actions/profile';
+import {Redirect} from 'react-router-dom';
 
 const Profiles = ({ 
     getProfiles, 
@@ -14,7 +15,7 @@ const Profiles = ({
         getProfiles();
     }, [getProfiles]);
 
-    return ( <Fragment>
+    return(userLevel !== 3 ? <Redirect to="/dashboard" /> : <Fragment>
         {
             loading ? <Spinner />: <Fragment>
                 <h1 className="large text-primary"> Customers </h1>
@@ -31,7 +32,7 @@ const Profiles = ({
                 </Fragment>
         }
         </Fragment>
-    )
+    );
 };
 
 Profiles.propTypes = {
