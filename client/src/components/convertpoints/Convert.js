@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import Spinner from '../layout/Spinner';
@@ -17,6 +17,12 @@ const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert
     const { points, eWallet } = formData;
     const onChange = e => setFormData({ ...formData, [e.target.id]: e.target.value });
 
+    const [success,setSuccess] = useState(false);
+
+    useEffect(() => {
+        setSuccess(false);
+    });
+
     const onKeyPress = (e) => {
         let pat = /^[ ]*\d+[ ]*$/;
         
@@ -32,7 +38,6 @@ const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert
         //     var output =  parseFloat(point) / 10;
         //     e.getElementById("eWallet").value = output;
         // };
-    
     const onSubmit = async e =>{ 
         e.preventDefault();
         //convertpoints(points, eWallet);
@@ -56,15 +61,13 @@ const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert
         setAlert(msg, fail);
 
         if(fail == "success") {
-            console.log("enters1");
-            setTimeout(() => {
-                console.log("enters2");
-                return <Redirect to="/dashboard" />;
-            }, 6000);
+            setSuccess(true);
         }
     }
 
-    
+    if(success) {
+        return <Redirect to="/dashboard" />;
+    }
     return (
         totalPoints == undefined ? <Spinner/> : 
         (<Fragment>
