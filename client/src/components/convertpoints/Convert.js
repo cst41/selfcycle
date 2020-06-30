@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Alert from '../layout/Alert';
 import {setAlert} from '../../actions/alert';
 
-const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert  }) => {
+const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert,setAlert}) => {
     const [formData, setFormData] = useState({
 
         points: '',
@@ -37,13 +37,15 @@ const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert
     const onSubmit = async e =>{ 
         e.preventDefault();
         //convertpoints(points, eWallet);
-        let points = e.target.value;
+        let points = document.getElementById("points").value;
+        points = Number(points);
+        console.log(typeof points);
         let fail = "success";
         let msg;
-        if(typeof e.target.value !== "number") {
+        if(typeof points != "number") {
             fail = true;
             msg = "Please enter an appropriate value";
-        } else if( e.target.value > totalPoints) {
+        } else if( points > totalPoints) {
             fail = true;
             msg = "Please enter a value that is not more than available points";
         } else {
@@ -82,8 +84,15 @@ const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert
                     disabled
                 />
                 </div>
-                <Link to='/convert' className='btn btn-primary' >  Convert </Link>
-                <Link className="btn btn-light my-1"to="/dashboard">Go Back</Link>
+                <div >
+                    <input
+                    className="btn btn-primary"
+                    type="submit"
+                    value="Convert"
+                    />
+                    <Link className="btn btn-light my-1"to="/dashboard">Go Back</Link>
+                </div>
+                
         </form>
         </Fragment>)
     )
