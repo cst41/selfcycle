@@ -10,6 +10,7 @@ import RecycleGuide from './RecycleGuide';
 import PieChart from './PieChart';
 import money from './PieChartComponent/money.svg';
 import Map from './Map';
+import cash from './PieChartComponent/cash.svg';
 
 
 const Dashboard = ({ 

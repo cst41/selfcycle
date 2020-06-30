@@ -31,7 +31,7 @@ const PieChart = ({paper, metal, total, getPoints}) => {
     useEffect(() => {
         getPoints();
         //eslint-disable-next-line
-    },[]);
+    });
     const pieStyle1 = {
         wordWrap: 'normal',
         display: 'inline-block'
