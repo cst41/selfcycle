@@ -33,20 +33,20 @@ const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert
         //     e.getElementById("eWallet").value = output;
         // };
     
-    
     const onSubmit = async e =>{ 
         e.preventDefault();
         //convertpoints(points, eWallet);
         let points = document.getElementById("points").value;
-        points = Number(points);
         console.log(typeof points);
         let fail = "success";
         let msg;
-        if(typeof points != "number") {
-            fail = true;
+        let pat = /^[ ]*\d+[ ]*$/;
+        console.log(pat.test(points));
+        if(!pat.test(points)) {
+            fail = "danger";
             msg = "Please enter an appropriate value";
         } else if( points > totalPoints) {
-            fail = true;
+            fail = "danger";
             msg = "Please enter a value that is not more than available points";
         } else {
             msg = "Points successfully credited into your account";
@@ -54,6 +54,14 @@ const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert
         console.log(msg);
 
         setAlert(msg, fail);
+
+        if(fail == "success") {
+            console.log("enters1");
+            setTimeout(() => {
+                console.log("enters2");
+                return <Redirect to="/dashboard" />;
+            }, 6000);
+        }
     }
 
     
