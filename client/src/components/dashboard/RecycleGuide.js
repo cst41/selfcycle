@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom';
 
 const RecycleGuide = props => {
     return (
-        <div style={{width: '60vw'}}>
+        <div>
             <p><b> Recycling Waste Points Conversion Rate </b> | <Link to='/#'> Guide on recycling waste</Link></p>
             <div class="aritem bg-white p-1 my-1">
                 <div> 
                     
                     <img class="round-img" style={{width: '25%'}} src={ require('../../img/box-brown.png')} /> 
                     <img class="round-img" style={{width: '25%'}} src={ require('../../img/paper-book.png')} /><br/>
-                    <b> Paper, cardboxes, books: 1kg = 250 points  </b> <br/> 
+                    <b> Paper, cardboxes, books: 1kg = 50 points  </b> <br/> 
 
                     <img class="round-img" style={{width: '25%'}} src={ require('../../img/plastic-bottle-color.png')} /> 
                     <img class="round-img" style={{width: '25%'}} src={ require('../../img/detergent801.png')} /><br/>
-                    <b> Plastic bag, plastic bottles: 1kg = 130 points  </b>
+                    <b> Plastic bag, plastic bottles: 1kg = 20 points  </b>
                     
                 </div>
                 
@@ -23,7 +23,7 @@ const RecycleGuide = props => {
                 <div>
                     <img class="round-img" style={{width: '25%'}} src={ require('../../img/tin-grad.png')}/>
                     <img class="round-img" style={{width: '25%'}} src={ require('../../img/drinkcan.png')}/><br/>
-                    <b>  Metal cans, aluminium cans: 1 kg = 1000 points </b> <br/> 
+                    <b>  Metal cans, aluminium cans: 1 kg = 100 points </b> <br/> 
 
                     <img class="round-img" style={{width: '25%'}} src={ require('../../img/food-waste.png')}/>
                     <img class="round-img" style={{width: '25%'}} src={ require('../../img/styro-tr.png')}/><br/>

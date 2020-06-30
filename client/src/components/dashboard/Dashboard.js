@@ -65,6 +65,7 @@ const Dashboard = ({
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <RecycleGuide/>
             <div style={{alignSelf: 'flex-end'}}>
+                <strong>Total points: </strong>
                 <img src={money} style={{width: '30px', verticalAlign: '-10px'}}/> <span> </span> <span>{total}</span>
             </div>
             <PieChart/>

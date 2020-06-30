@@ -1,8 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
+import Spinner from '../layout/Spinner';
+import { connect } from 'react-redux';
+import Alert from '../layout/Alert';
+import {setAlert} from '../../actions/alert';
 
-const Convert = ({ convertpoints, calculatepoints  }) => {
+const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert  }) => {
     const [formData, setFormData] = useState({
 
         points: '',
@@ -33,18 +37,33 @@ const Convert = ({ convertpoints, calculatepoints  }) => {
     const onSubmit = async e =>{ 
         e.preventDefault();
         //convertpoints(points, eWallet);
+        let points = e.target.value;
+        let fail = "success";
+        let msg;
+        if(typeof e.target.value !== "number") {
+            fail = true;
+            msg = "Please enter an appropriate value";
+        } else if( e.target.value > totalPoints) {
+            fail = true;
+            msg = "Please enter a value that is not more than available points";
+        } else {
+            msg = "Points successfully credited into your account";
+        }
+
+        setAlert(msg, fail);
     }
 
     
     return (
-        <Fragment>
-            
+        totalPoints == undefined ? <Spinner/> : 
+        (<Fragment>
             <p className="lead">
                 <i className="fas fa-exchange-alt text-primary"></i> Enter the amount of points to be convert into eWallet credit
             </p>
             
             <form className="form" onSubmit={e => onSubmit(e)}>
             <img  className='form-img' src={ require('../../img/convert1.png')} /> 
+            <div><strong>Available Coins: </strong><span>{totalPoints}</span></div>
                 <div className="form-small">
                     <input 
                         type="points" 
@@ -65,14 +84,20 @@ const Convert = ({ convertpoints, calculatepoints  }) => {
                 <Link to='/convert' className='btn btn-primary' >  Convert </Link>
                 <Link className="btn btn-light my-1"to="/dashboard">Go Back</Link>
         </form>
-        </Fragment>
-
+        </Fragment>)
     )
 }
 
 Convert.propTypes = {
     convertpoints: PropTypes.number,
-    calculatepoints: PropTypes.func,
+    calculatepoints: PropTypes.func
 }
 
-export default Convert
+const mapStateToProp = (state) => {
+    return({
+        totalPoints: state.points.total,
+        alert: state.alert
+    });
+};
+
+export default connect(mapStateToProp, {setAlert})(Convert)
