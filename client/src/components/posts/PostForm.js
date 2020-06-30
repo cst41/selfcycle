@@ -51,7 +51,7 @@ const PostForm = ({ addPost}) => {
                     value={desc} required onChange={e => onChange(e)}>
                     </textarea>
                 </div>
-                <input type="submit" class="btn btn-dark my-1" value="Submit"/>
+                <input type="submit" class="btn btn-primary" value="Submit"/>
                 </form>
       </div>
     )
