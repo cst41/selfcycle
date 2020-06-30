@@ -10,7 +10,7 @@ const Map = ({points, getPoints}) => {
     useEffect(() => {
         getPoints();
         //eslint-disable-next-line
-    }, []);
+    });
 
     return (
         <GoogleMap 

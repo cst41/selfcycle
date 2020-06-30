@@ -49,6 +49,7 @@ const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert
         } else {
             msg = "Points successfully credited into your account";
         }
+        console.log(msg);
 
         setAlert(msg, fail);
     }
