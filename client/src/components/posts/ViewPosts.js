@@ -1,19 +1,16 @@
-import React, { Component, Fragment, useEffect, useState, useReducer } from 'react';
+import React, {Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import { getPosts } from '../../actions/post';
 import {Redirect} from 'react-router-dom';
-import { post } from 'request';
 
 
 const ViewPosts = ({ 
     
     getPosts, 
     post: { posts, loading}, userLevel}) => {
-
-    let filter = 0;
 
     const [checkboxData, setValue] = useState({
         leastOne: false,
@@ -34,65 +31,17 @@ const ViewPosts = ({
         setValue({...checkboxData, leastOne: boolval});
     }, [getPosts, checkboxData.hardware, checkboxData.software, checkboxData.payment, checkboxData.customer, checkboxData.others]);
     
-    const something = () => {
-        
-
-        // const something = () => {
-        //     let testarr = posts;
-        //     console.log(1);
-        //     testarr = posts.map(post => {
-        //         if( post.issues === "Hardware Issue" && hardwareIssue === true)
-        //         {
-        //             return post;
-        //         }
-    
-        //         else if(post.issues === "Software Issue" && softwareIssue === true)
-        //         {
-        //             return (
-        //                 <PostItem key={post._id} post={post}/>
-        //             )
-        //         }
-    
-        //         else if(post.issues === "Customer Service Issue" && csIssue === true)
-        //         {
-        //             return (
-        //                 <PostItem key={post._id} post={post}/>
-        //             )
-        //         }
-    
-        //         else if(post.issues === "Payment Issue" && payIssue === true)
-        //         {
-        //             return (
-        //                 <PostItem key={post._id} post={post}/>
-        //             )
-        //         }
-    
-        //         else if(post.issues === "Other Issue" && othersIssue === true)
-        //         {
-        //             return (
-        //                 <PostItem key={post._id} post={post}/>
-        //             )
-        //         }
-        // });
-    };
-
     const findComplaints = (e) => {
         if(e.target.id === "1") {
-            //hardwareIssue = !hardwareIssue;
             setValue({...checkboxData, hardware: !checkboxData.hardware});
-            console.log("1");
         } else if(e.target.id === "2" ) {
             setValue({...checkboxData, software: !checkboxData.software});
-            //softwareIssue = !softwareIssue;
         } else if(e.target.id === "3") {
             setValue({...checkboxData, customer: !checkboxData.customer});
-            //csIssue = !csIssue;
         } else if(e.target.id === "4") {
             setValue({...checkboxData, payment: !checkboxData.payment});
-            //payIssue = !payIssue;
         } else if(e.target.id === "5") {
             setValue({...checkboxData, others: !checkboxData.others});
-           //othersIssue = !othersIssue;
         }
     }
 
