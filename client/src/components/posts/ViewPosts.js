@@ -15,15 +15,24 @@ const ViewPosts = ({
 
     let filter = 0;
 
-    const [val, setValue] = useState();
+    const [checkboxData, setValue] = useState({
+        leastOne: false,
+        hardware: false,
+        software: false,
+        customer: false,
+        payment: false,
+        others: false
+    });
 
     const refresh = () => {
-        setValue({});
+        setValue({...checkboxData, leastOne: false, hardware: false, software: false, customer: false, payment: false, others: false});
     }
 
     useEffect( () => {
-       getPosts();
-    }, [getPosts]);
+        getPosts();
+        const boolval = checkboxData.hardware || checkboxData.software || checkboxData.customer || checkboxData.payment || checkboxData.others;
+        setValue({...checkboxData, leastOne: boolval});
+    }, [getPosts, checkboxData.hardware, checkboxData.software, checkboxData.payment, checkboxData.customer, checkboxData.others]);
     
     const something = () => {
         
@@ -67,20 +76,23 @@ const ViewPosts = ({
         // });
     };
 
-    let hardwareIssue, softwareIssue, csIssue, payIssue, othersIssue = false;
-
     const findComplaints = (e) => {
         if(e.target.id === "1") {
-            hardwareIssue = !hardwareIssue;
-            console.log("test");
+            //hardwareIssue = !hardwareIssue;
+            setValue({...checkboxData, hardware: !checkboxData.hardware});
+            console.log("1");
         } else if(e.target.id === "2" ) {
-            softwareIssue = !softwareIssue;
+            setValue({...checkboxData, software: !checkboxData.software});
+            //softwareIssue = !softwareIssue;
         } else if(e.target.id === "3") {
-            csIssue = !csIssue;
+            setValue({...checkboxData, customer: !checkboxData.customer});
+            //csIssue = !csIssue;
         } else if(e.target.id === "4") {
-            payIssue = !payIssue;
+            setValue({...checkboxData, payment: !checkboxData.payment});
+            //payIssue = !payIssue;
         } else if(e.target.id === "5") {
-            othersIssue = !othersIssue;
+            setValue({...checkboxData, others: !checkboxData.others});
+           //othersIssue = !othersIssue;
         }
     }
 
@@ -89,26 +101,31 @@ const ViewPosts = ({
            
         <div>
                 <input type="checkbox" id="1"
-                onChange={e => findComplaints(e)}/> <b> Hardware Issue | </b>
+                onChange={e => findComplaints(e)} checked={checkboxData.hardware}/> <b> Hardware Issue | </b>
                 
                 <input type="checkbox" id="2" 
-                onChange={e => findComplaints(e)}/> <b> Software Issue | </b>
+                onChange={e => findComplaints(e)} checked={checkboxData.software}/> <b> Software Issue | </b>
                 
                 <input type="checkbox" id="3"
-                onChange={e => findComplaints(e)}/> <b> Customer Service Issue | </b> 
+                onChange={e => findComplaints(e)} checked={checkboxData.customer}/> <b> Customer Service Issue | </b> 
                 
                 <input type="checkbox" id="4"
-                onChange={e => findComplaints(e)}/>  <b> Payment Issue |</b>
+                onChange={e => findComplaints(e)} checked={checkboxData.payment}/>  <b> Payment Issue |</b>
                 
                 <input type="checkbox" id="5"
-                onChange={e => findComplaints(e)}/>  <b> Others Issue </b> 
+                onChange={e => findComplaints(e)} checked={checkboxData.others}/>  <b> Others Issue </b> 
 
         </div>
 
          <div className="posts">
-            {posts.map(post => (
-                post.issues === "Hardware Issue" && hardwareIssue ?
-                <PostItem key={post._id} post={post}/> : ""
+            {posts.map(post => ( checkboxData.leastOne === true ?
+                ((post.issues === "Hardware Issue" && checkboxData.hardware) ||
+                (post.issues === "Software Issue" && checkboxData.software) ||
+                (post.issues === "Customer Service Issue" && checkboxData.customer) ||
+                (post.issues === "Payment Issue" && checkboxData.payment) ||
+                (post.issues === "Other Issue" && checkboxData.others) ?
+                <PostItem key={post._id} post={post}/> :  null) :
+                <PostItem key={post._id} post={post}/>
             ))}
         </div>
         <button onClick={refresh}>Refresh</button>
