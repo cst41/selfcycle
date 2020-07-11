@@ -19,14 +19,13 @@ const Dashboard = ({
     auth: { user }, 
     profile: { profile, loading},
     total,
-    userLevel,
     }) => {
     useEffect(() => {
         getCurrentProfile();
     }, [getCurrentProfile]);
     
     return loading && profile === null ? (<Spinner/>) : 
-    (userLevel === 1 ? (<Fragment> 
+    (user.userLevel === 1 ? (<Fragment> 
         <h1 className="large text-primary"> My Dashboard</h1>
         <p className="lead">
             <i className="fas fa-user"></i> Welcome { user && user.name}
@@ -83,14 +82,12 @@ Dashboard.propTypes = {
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
     total: PropTypes.number.isRequired,
-    userLevel: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
     profile: state.profile,
-    total: state.points.total,
-    userLevel: state.auth.user.userLevel
+    total: state.points.total
 });
 
 export default connect(
