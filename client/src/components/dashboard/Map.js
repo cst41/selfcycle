@@ -8,9 +8,9 @@ const Map = ({points, getPoints}) => {
     const [recycler, setRecycler] = useState(null);
     const [wastebin, setWastebin] = useState(null);
     const [directions, setDirections] = useState(null);
+    const [view, setView] = useState(false);
 
-    useEffect(() => {
-        getPoints();
+    const renderDirection = () => {
         const directionsService = new google.maps.DirectionsService();
 
         const origin = {lat:3.002579, lng: 101.449733};
@@ -30,6 +30,11 @@ const Map = ({points, getPoints}) => {
                 }
             }
         );
+    }
+
+    useEffect(() => {
+        getPoints();
+        renderDirection();
         //eslint-disable-next-line
     });
 
@@ -48,6 +53,7 @@ const Map = ({points, getPoints}) => {
             position={{lat:3.003267, lng: 101.445305}} 
             onClick={() => {
                 setWastebin({coord: {lat:3.003267, lng: 101.445305}, name: "Wastebin"});
+                setView(!view);
             }}/>
             
             {recycler && (
@@ -90,7 +96,7 @@ const Map = ({points, getPoints}) => {
                 </InfoWindow>
             )}
 
-            <DirectionsRenderer directions={directions} options={{preserveViewport: true, suppressMarkers: true}}/>
+            {view && (<DirectionsRenderer directions={directions} options={{preserveViewport: true, suppressMarkers: true}}/>)}
         </GoogleMap>
     );
 }
