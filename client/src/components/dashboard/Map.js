@@ -1,14 +1,35 @@
+ /* global google */
 import React, {useState, Fragment, useEffect} from 'react';
-import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
+import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow, DirectionsRenderer} from 'react-google-maps';
 import {connect} from 'react-redux';
 import { getPoints } from '../../actions/points';
 
 const Map = ({points, getPoints}) => {
     const [recycler, setRecycler] = useState(null);
     const [wastebin, setWastebin] = useState(null);
+    const [directions, setDirections] = useState(null);
 
     useEffect(() => {
         getPoints();
+        const directionsService = new google.maps.DirectionsService();
+
+        const origin = {lat:3.002579, lng: 101.449733};
+        const destination = {lat:3.003267, lng: 101.445305};
+
+        directionsService.route(
+            {
+                origin: origin,
+                destination: destination,
+                travelMode: google.maps.TravelMode.DRIVING
+            },
+            (result, status) => {
+                if(status === google.maps.DirectionsStatus.OK) {
+                    setDirections(result);
+                } else {
+                    console.error(`error fetching directions ${result}`);
+                }
+            }
+        );
         //eslint-disable-next-line
     });
 
@@ -28,7 +49,7 @@ const Map = ({points, getPoints}) => {
             onClick={() => {
                 setWastebin({coord: {lat:3.003267, lng: 101.445305}, name: "Wastebin"});
             }}/>
-
+            
             {recycler && (
                 <InfoWindow position={{lat:recycler.coord.lat, lng: recycler.coord.lng}} onCloseClick={() => {
                     setRecycler(null);
@@ -68,6 +89,8 @@ const Map = ({points, getPoints}) => {
                     </div>
                 </InfoWindow>
             )}
+
+            <DirectionsRenderer directions={directions} options={{preserveViewport: true, suppressMarkers: true}}/>
         </GoogleMap>
     );
 }
@@ -88,7 +111,7 @@ const WrappedMap = withScriptjs(withGoogleMap(connect(mapStateToProps, {getPoint
 const App = () => {
     return <div style={{width: '100%', height: '80vh'}}>
         <WrappedMap 
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAZJS-f33AxHFaKOXqFDcP8vb_c7_Womfk`}
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCE4GBjQ6pAiPbaCBqlth0cM1em0FE1T-U`}
         loadingElement={<div style={{height: '80vh'}} />}
         containerElement={<div style={{height: '80vh'}} />}
         mapElement={<div style={{height: '80vh'}} />} />
