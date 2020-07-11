@@ -1,5 +1,5 @@
  /* global google */
-import React, {useState, Fragment, useEffect} from 'react';
+import React, {useState, Fragment, useEffect, useRef, useCallback} from 'react';
 import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow, DirectionsRenderer} from 'react-google-maps';
 import {connect} from 'react-redux';
 import { getPoints } from '../../actions/points';
@@ -9,12 +9,21 @@ const Map = ({points, getPoints}) => {
     const [wastebin, setWastebin] = useState(null);
     const [directions, setDirections] = useState(null);
     const [view, setView] = useState(false);
+    const [recyclerMark, setRecyclerMark] = useState({
+        state: false,
+        lat: 3.003267, 
+        lng: 101.445305
+    });
+    const mapRef = useRef();
+    const onMapLoad = React.useCallback((map) => {
+        mapRef.current = map;
+    }, []);
 
     const renderDirection = () => {
         const directionsService = new google.maps.DirectionsService();
 
-        const origin = {lat:3.002579, lng: 101.449733};
-        const destination = {lat:3.003267, lng: 101.445305};
+        const origin = {lat: recyclerMark.lat, lng: recyclerMark.lng};
+        const destination = {lat:3.003267, lng: 101.445305}; // Waste Bin location
 
         directionsService.route(
             {
@@ -32,22 +41,38 @@ const Map = ({points, getPoints}) => {
         );
     }
 
+    const locate = () => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            let lat = position.coords.latitude, lng = position.coords.longitude;
+            lat = lat.toFixed(6);
+            lng = lng.toFixed(6);
+            lat = Number(lat);
+            lng = Number(lng);
+            setRecyclerMark({state: true, lat: lat, lng: lng});
+            
+            mapRef.current.panTo({lat,lng});
+        }, () => null);
+    }
+
     useEffect(() => {
         getPoints();
         renderDirection();
+        locate();
         //eslint-disable-next-line
     });
 
     return (
-        <GoogleMap 
+        <GoogleMap ref={(map) => {map && onMapLoad(map)}}
         defaultZoom={17} 
-        defaultCenter={{lat:3.003529, lng: 101.445766}} >
-            <Marker 
-            position={{lat:3.002579, lng: 101.449733}}
-            icon={"http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
-            onClick={() => {
-                setRecycler({coord: {lat:3.002579, lng: 101.449733}, name: "Recycler"});
-            }} />
+        defaultCenter={{lat: 3.003267, lng: 101.445305}} >
+            {recyclerMark.state && (
+                <Marker 
+                position={{lat: recyclerMark.lat, lng: recyclerMark.lng}}
+                icon={"http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}
+                onClick={() => {
+                    setRecycler({coord: {lat: recyclerMark.lat, lng: recyclerMark.lng}, name: "Recycler"});
+                }}/>
+            )}
 
             <Marker
             position={{lat:3.003267, lng: 101.445305}} 
@@ -62,7 +87,6 @@ const Map = ({points, getPoints}) => {
                 }}>
                     <div>
                         <h1>Volunteer Recycler Mr. John Current Location</h1>
-                        <span>Lebuh Gambus Taman Klang Jaya 41200 Selangor</span>
                     </div>
                 </InfoWindow>
             )}
