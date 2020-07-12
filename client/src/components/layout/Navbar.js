@@ -4,26 +4,26 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from "../../actions/auth";
 
-const Navbar = ({ userLevel, auth: {isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: {isAuthenticated, loading, user }, logout }) => {
     const authLinks = (
         <ul>
-            <li><Link to="/profiles">
+            {user ? user.userLevel === 3 && (<li><Link to="/profiles">
                 Customers
                 <span className="hide-sm"></span>
                 </Link>
-            </li>
+            </li>): null}
 
-            <li><Link to="/viewposts">
+            {user ? user.userLevel === 3 && (<li><Link to="/viewposts">
             <i className="fas fa-eye"></i>{' '}View Complaints
                <span className="hide-sm"></span>
                 </Link>
-            </li>
+            </li>): null}
             
-            <li><Link to="/posts">
+            {user ? user.userLevel !== 3 && (<li><Link to="/posts">
             <i className="fas fa-exclamation-triangle"></i>{' '}Report A Problem
                <span className="hide-sm"></span>
                 </Link>
-            </li>
+            </li>): null}
 
             <li><Link to="/dashboard">
                 <i className="fas fa-user"></i>{' '} Me 

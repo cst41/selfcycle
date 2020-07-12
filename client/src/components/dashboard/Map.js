@@ -108,12 +108,12 @@ const Map = ({points, getPoints}) => {
                             <tr>
                                 <td style={tableStyling}>Paper</td>
                                 <td style={tableStyling}>{points.paper.full}</td>
-                                <td style={tableStyling}>{points.paper.weight}</td>
+                                <td style={tableStyling}>{points.paper.weight >= 1000 ? ((points.paper.weight/1000.0) + "Kg") : (points.paper.weight + "g")}</td>
                             </tr>
                             <tr>
                                 <td style={tableStyling}>Metal</td>
                                 <td style={tableStyling}>{points.metal.full}</td>
-                                <td style={tableStyling}>{points.metal.weight}</td>
+                                <td style={tableStyling}>{points.metal.weight >= 1000 ? ((points.metal.weight/1000.0) + "Kg") : (points.metal.weight + "g") }</td>
                             </tr>
                         </table>
                     </div>

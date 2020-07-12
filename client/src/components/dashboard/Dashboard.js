@@ -11,6 +11,7 @@ import PieChart from './PieChart';
 import money from './PieChartComponent/money.svg';
 import Map from './Map';
 import { updatePoints } from '../../actions/points';
+import {Redirect} from 'react-router-dom';
 
 
 const Dashboard = ({ 
@@ -74,11 +75,11 @@ const Dashboard = ({
                 <button style={btnStyle} onClick={() => {updatePoints(total)}}>Pick up Trash</button>
             </div>
         </div>
-    </Fragment>): (
+    </Fragment>): user.userLevel === 2 ? (
         <div>
             <Map />
         </div>
-    ));
+    ): <Redirect to="/profiles"/>);
 };
 
 const btnStyle = {
