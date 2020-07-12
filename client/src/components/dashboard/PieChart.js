@@ -142,6 +142,7 @@ PieChart.propTypes = {
     paper: PropTypes.object,
     metal: PropTypes.object,
     total: PropTypes.number.isRequired,
+    points: PropTypes.number.isRequired,
     getPoints: PropTypes.func.isRequired
 }
 
@@ -149,7 +150,8 @@ const mapStateToProps = state => {
 return({
     paper: state.points.paper,
     metal: state.points.metal,
-    total: state.points.total
+    total: state.points.total,
+    points: state.points.points
 });
 };
 

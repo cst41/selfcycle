@@ -5,8 +5,9 @@ import Spinner from '../layout/Spinner';
 import { connect } from 'react-redux';
 import Alert from '../layout/Alert';
 import {setAlert} from '../../actions/alert';
+import {updatePoints} from "../../actions/points";
 
-const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert,setAlert}) => {
+const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert,setAlert, updatePoints}) => {
     const [formData, setFormData] = useState({
 
         points: '',
@@ -54,6 +55,8 @@ const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert
             fail = "danger";
             msg = "Please enter a value that is not more than available points";
         } else {
+            let value = totalPoints - points;
+            updatePoints(value);
             msg = "Points successfully credited into your account";
         }
         console.log(msg);
@@ -111,7 +114,8 @@ const Convert = ({ convertpoints, calculatepoints, totalPoints, setPoints, alert
 
 Convert.propTypes = {
     convertpoints: PropTypes.number,
-    calculatepoints: PropTypes.func
+    calculatepoints: PropTypes.func,
+    updatePoints: PropTypes.func.isRequired
 }
 
 const mapStateToProp = (state) => {
@@ -121,4 +125,4 @@ const mapStateToProp = (state) => {
     });
 };
 
-export default connect(mapStateToProp, {setAlert})(Convert)
+export default connect(mapStateToProp, {setAlert, updatePoints})(Convert)

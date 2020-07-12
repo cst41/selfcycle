@@ -10,7 +10,7 @@ import RecycleGuide from './RecycleGuide';
 import PieChart from './PieChart';
 import money from './PieChartComponent/money.svg';
 import Map from './Map';
-import cash from './PieChartComponent/cash.svg';
+import { updatePoints } from '../../actions/points';
 
 
 const Dashboard = ({ 
@@ -19,6 +19,8 @@ const Dashboard = ({
     auth: { user }, 
     profile: { profile, loading},
     total,
+    points,
+    updatePoints
     }) => {
     useEffect(() => {
         getCurrentProfile();
@@ -65,9 +67,12 @@ const Dashboard = ({
             <RecycleGuide/>
             <div style={{alignSelf: 'flex-end'}}>
                 <strong>Total points: </strong>
-                <img src={money} style={{width: '30px', verticalAlign: '-10px'}}/> <span> </span> <span>{total}</span>
+                <img src={money} style={{width: '30px', verticalAlign: '-10px'}}/> <span> </span> <span>{points}</span>
             </div>
             <PieChart/>
+            <div>
+                <button style={btnStyle} onClick={() => {updatePoints(total)}}>Pick up Trash</button>
+            </div>
         </div>
     </Fragment>): (
         <div>
@@ -76,21 +81,34 @@ const Dashboard = ({
     ));
 };
 
+const btnStyle = {
+    border: "0px solid black",
+    backgroundColor: "#27ae60",
+    color: "white",
+    padding: "15px 25px",
+    marginTop: "20px",
+    cursor: "pointer",
+    boxShadow: "0 3px 3px 0 grey"
+}
+
 Dashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
     deleteAccount: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
     total: PropTypes.number.isRequired,
+    points: PropTypes.number.isRequired,
+    updatePoints: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
     profile: state.profile,
-    total: state.points.total
+    total: state.points.total,
+    points: state.points.points
 });
 
 export default connect(
     mapStateToProps, 
-    {getCurrentProfile, deleteAccount}
+    {getCurrentProfile, deleteAccount, updatePoints}
 )(Dashboard);

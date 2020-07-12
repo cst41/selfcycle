@@ -1,14 +1,14 @@
-import { GET_POINTS } from './types';
+import { GET_POINTS, UPDATE_POINTS } from './types';
 import axios from 'axios';
 
 export const getPoints = () => async dispatch => {
     try {
         const res = await axios.get("api/points");
 
-        let paperPoints = res.data[0].weight * 0.25;
+        let paperPoints = res.data.data[0].weight * 0.25;
         paperPoints = Math.round(paperPoints);
 
-        let metalPoints = res.data[1].weight * 1;
+        let metalPoints = res.data.data[1].weight * 1;
         metalPoints = Math.round(metalPoints);
 
         if(paperPoints < 0) {
@@ -20,20 +20,20 @@ export const getPoints = () => async dispatch => {
         }
 
         let paperWeight, metalWeight;
-        if(res.data[0].weight > 1000) {
-            paperWeight = (res.data[0].weight/1000.0) + "Kg";
-        } else if(res.data[0].weight < 0) {
+        if(res.data.data[0].weight > 1000) {
+            paperWeight = (res.data.data[0].weight/1000.0) + "Kg";
+        } else if(res.data.data[0].weight < 0) {
             paperWeight = "0g";
         } else {
-            paperWeight = res.data[0].weight + "g";
+            paperWeight = res.data.data[0].weight + "g";
         }
 
-        if(res.data[1].weight > 1000) {
-            metalWeight = (res.data[1].weight/1000.0) + "Kg";
-        } else if(res.data[1].weight <0) {
+        if(res.data.data[1].weight > 1000) {
+            metalWeight = (res.data.data[1].weight/1000.0) + "Kg";
+        } else if(res.data.data[1].weight <0) {
             metalWeight = "0g";
         } else {
-            metalWeight = res.data[1].weight + "g";
+            metalWeight = res.data.data[1].weight + "g";
         }
 
         const totalPoints = paperPoints + metalPoints;
@@ -43,16 +43,34 @@ export const getPoints = () => async dispatch => {
             payload: {
                 paper: {
                     weight: paperWeight, 
-                    full: res.data[0].full, 
+                    full: res.data.data[0].full, 
                     points: paperPoints
                 },
                 metal: {
                     weight: metalWeight,
-                    full: res.data[1].full,
+                    full: res.data.data[1].full,
                     points: metalPoints
                 },
-                total: totalPoints
+                total: totalPoints,
+                points: res.data.points
             }
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export const updatePoints = (total) => async dispatch => {
+    try {
+        const config = {
+            header: {
+                "Content-Type": "application/json"
+            }
+        }
+        const res = await axios.post("api/points", {total: total}, config);
+
+        dispatch({
+            type: UPDATE_POINTS
         });
     } catch (err) {
         console.log(err);

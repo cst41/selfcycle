@@ -1,9 +1,10 @@
-import { GET_POINTS } from '../actions/types';
+import { GET_POINTS, UPDATE_POINTS } from '../actions/types';
 
 const initialState = {
     paper: null,
     metal: null,
-    total: 0
+    total: 0,
+    points: 0
 }
 
 export default function(state = initialState, action) {
@@ -15,7 +16,13 @@ export default function(state = initialState, action) {
                 ...state,
                 paper: payload.paper,
                 metal: payload.metal,
-                total: payload.total
+                total: payload.total,
+                points: payload.points
+            }
+        case UPDATE_POINTS:
+            return {
+                ...state,
+                points: state.total
             }
         default:
             return state;
