@@ -69,7 +69,7 @@ const PieChart = ({paper, metal, total, getPoints}) => {
                             </span>
                         </div>
                         <div>{paper != undefined ? (
-                            paper.weight >= 1000 ? ((paper.weight/1000.0) + "Kg") : (paper.weight + "g")
+                            paper.weight >= 1000 ? ((paper.weight/1000.0) + "Kg") : (paper.weight < 0) ? ("0g") : (paper.weight + "g")
                         ) : ""}</div>
                     </div>
                     <div style={{textAlign: 'left',position:'absolute',bottom:'1%',left:'15%'}}>
@@ -104,7 +104,7 @@ const PieChart = ({paper, metal, total, getPoints}) => {
                             )}
                         </div>
                         <div>{metal != undefined ? (
-                            metal.weight >= 1000 ? ((metal.weight/1000.0) + "Kg") : (metal.weight + "g") 
+                            metal.weight >= 1000 ? ((metal.weight/1000.0) + "Kg") : (metal.weight < 0) ? ("0g") : (metal.weight + "g") 
                         ) : ""}</div>
                     </div>
                     <div style={{textAlign: 'right', position:'absolute',bottom:'1%',right:'15%'}}>
