@@ -120,7 +120,7 @@ Convert.propTypes = {
 
 const mapStateToProp = (state) => {
     return({
-        totalPoints: state.points.total,
+        totalPoints: state.points.points,
         alert: state.alert
     });
 };
