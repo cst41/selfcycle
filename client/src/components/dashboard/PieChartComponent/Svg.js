@@ -22,18 +22,18 @@ import plastic50 from './plastic50.svg';
 import plastic75 from './plastic75.svg';
 import plastic100 from './plastic100.svg';
 
-const Danger1 = () => {
+const Danger1 = ({view}) => {
     return(
         <Fragment>
-            <img src={danger} style={{display:'none', width: '20%',marginRight: '5%'}} alt="danger"/>
+            <img src={danger} style={{display: view, width: '20%',marginRight: '5%'}} alt="danger"/>
         </Fragment>
     );
 };
 
-const Danger2 = () => {
+const Danger2 = ({view}) => {
     return(
         <Fragment>
-            <img src={danger} style={{display:'none', width: '20%', marginLeft: '5%'}} alt="danger"/>
+            <img src={danger} style={{display: view, width: '20%', marginLeft: '5%'}} alt="danger"/>
         </Fragment>
     );
 };

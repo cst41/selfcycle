@@ -42,12 +42,12 @@ export const getPoints = () => async dispatch => {
             type: GET_POINTS,
             payload: {
                 paper: {
-                    weight: paperWeight, 
+                    weight: res.data.data[0].weight, 
                     full: res.data.data[0].full, 
                     points: paperPoints
                 },
                 metal: {
-                    weight: metalWeight,
+                    weight: res.data.data[1].weight,
                     full: res.data.data[1].full,
                     points: metalPoints
                 },

@@ -56,7 +56,9 @@ const PieChart = ({paper, metal, total, getPoints}) => {
                     <div style={{display:'inline-block',marginRight: '3%'}}>
                         <div>Paper</div>
                         <div>
-                            <Danger1/>
+                            {paper == undefined ? "" : (
+                                (paper.full === "100% Full") || (paper.weight >= 5000) ? <Danger1 view={'inline'} /> : <Danger1 view={"none"}/>
+                            )}
                             <span style={paper == undefined ? pieStyle1 : (paper.full === "Empty" ? pieStyle1 : pieStyle2)}>
                             {paper == undefined ? "" : (
                                 paper.full === "25% Full" ? "Reaching 25% Fullness" : 
@@ -66,7 +68,9 @@ const PieChart = ({paper, metal, total, getPoints}) => {
                             )}
                             </span>
                         </div>
-                        <div>{paper != undefined ? paper.weight : ""}</div>
+                        <div>{paper != undefined ? (
+                            paper.weight >= 1000 ? ((paper.weight/1000.0) + "Kg") : (paper.weight + "g")
+                        ) : ""}</div>
                     </div>
                     <div style={{textAlign: 'left',position:'absolute',bottom:'1%',left:'15%'}}>
                         <Money/>
@@ -95,9 +99,13 @@ const PieChart = ({paper, metal, total, getPoints}) => {
                                 (metal.full === "100% Full" ? "Reaching 100% Fullness" : "Empty"))))
                             }
                             </span>
-                            <Danger2/>
+                            {metal == undefined ? "" : (
+                                (metal.full === "100% Full") || (metal.weight >= 5000) ? <Danger2 view={'inline'}/> : <Danger2 view={'none'}/>
+                            )}
                         </div>
-                        <div>{metal != undefined ? metal.weight : ""}</div>
+                        <div>{metal != undefined ? (
+                            metal.weight >= 1000 ? ((metal.weight/1000.0) + "Kg") : (metal.weight + "g") 
+                        ) : ""}</div>
                     </div>
                     <div style={{textAlign: 'right', position:'absolute',bottom:'1%',right:'15%'}}>
                         <Money/>
@@ -110,7 +118,7 @@ const PieChart = ({paper, metal, total, getPoints}) => {
             <div style={{position:'relative',width:'260px',height:'260px',margin: '0 0.75vw 0 0.75vw'}}>
                 <Others0/>
                 <div style={{textAlign: 'right',marginTop: '28%'}}>
-                    <Danger1/>
+                    <Danger1 view={'none'}/>
                     <div style={{display:'inline-block',marginRight: '3%'}}>
                         <div>Others</div>
                         <div>Empty</div>
@@ -130,7 +138,7 @@ const PieChart = ({paper, metal, total, getPoints}) => {
                         <div>Empty</div>
                         <div>0g</div>
                     </div>
-                    <Danger2/>
+                    <Danger2 view={'none'}/>
                 </div>
             </div>
         </div>
